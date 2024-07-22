@@ -9,11 +9,11 @@ import requests
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 
-def sayStuff(text):    
+def sayStuff(text):    #giving voicebot a voice
     engine.say(text)
     engine.runAndWait()
 
-def web_open(command):
+def web_open(command):     #helps to open a websites like Google, LinkedIn, YouTube
     if "open google" in command.lower():
         webbrowser.open("https://www.google.com/")
     elif "open linkedin" in command.lower():
@@ -21,7 +21,7 @@ def web_open(command):
     elif "open youtube" in command.lower():
         webbrowser.open("https://www.youtube.com/")
 
-def search_web(command):
+def search_web(command):        #searches content in YouTube, LinkedIn and Google
     if "youtube" in command:
         search_word = command[7:-11]
         search_list=search_word.split()
@@ -46,9 +46,9 @@ def search_web(command):
         sayStuff(f"searching {search_word} on LinkedIn.")
         webbrowser.open(f"https://www.linkedin.com/search/results/all/?keywords={web_search}")
     
-def news(command):
+def news(command):    #helps to generate news with the help of News API
     if "news" in command:
-        api_key = 'ddc0a8aee7da494bb46fa8c44e29d782'
+        api_key = 'your api'
         url = 'https://newsapi.org/v2/top-headlines'
         params = {
             'country': 'in',
@@ -97,7 +97,7 @@ def news(command):
             print(f"Error: {response.status_code}")
             print(response.json())
 
-def songplay(command):
+def songplay(command):     #import song links from music library and plays in either YouTube or Spotify
     song=command.split(" ")[1]
     if "youtube" in command:
         song_link=musiclibrary.music[song]
@@ -107,7 +107,7 @@ def songplay(command):
         song_link=musiclibrary.musicS[song]
         webbrowser.open(song_link)
 
-class ExitProgram(Exception):
+class ExitProgram(Exception):   #a useless function rn, but will update it further
     pass
 
 if __name__ == "__main__":
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     try:
         while True:
             
-            with sr.Microphone() as source:
+            with sr.Microphone() as source:   #records audio and converts it into a str
                 print("Say something!")
                 try:
                     audio = recognizer.listen(source)
@@ -133,7 +133,7 @@ if __name__ == "__main__":
                 print(f"Could not request results from Google Speech Recognition service; {e}")
                 break
 
-            if user_input == "voice bot":
+            if user_input == "voice bot":     #voicebot activates once "voice bot" is spoken by the user
                 try:
                     print("VoiceBot Started...")
                     sayStuff("Voice Bot started...")
@@ -145,7 +145,7 @@ if __name__ == "__main__":
                             try:
                                 audio = recognizer.listen(source)
                                 command = recognizer.recognize_google(audio).lower()
-                                if "exit" in command:
+                                if "exit" in command:                     #breaks out of loop if "exit" is mentioned in command
                                     print("Thanks for using us!")
                                     sayStuff("Thanks for using us!")
                                     raise ExitProgram
@@ -160,7 +160,6 @@ if __name__ == "__main__":
                                 continue
                             
                             except ExitProgram:
-                                ("Lessgo")
                                 break
                             
                             except Exception as e:
@@ -168,7 +167,8 @@ if __name__ == "__main__":
                                 break
 
                             print("VoiceBot thinks you said: " + command)
-                            if "open google" in command:
+                            
+                            if "open google" in command:                      #based on the commands, it does selective tasks
                                 print("Opening Google...")
                                 sayStuff("Opening Google...")
                                 web_open(command)
@@ -199,13 +199,13 @@ if __name__ == "__main__":
                                 sayStuff("Here are some top headlines of the day")
                                 news(command)
                             
-                except ExitProgram:
+                except ExitProgram:    
                     break
                 except Exception as e:
                     print(f"An error occurred: {e}")
                     break
             
-            elif "bye" in user_input:
+            elif "bye" in user_input:    #code breaks with "bye" is mentioned in command
                 print("Cya soon...")
                 sayStuff("see you soon...")
                 break
@@ -215,3 +215,6 @@ if __name__ == "__main__":
             
     except ExitProgram:
         print("Exiting the program.")
+        
+        
+        #will probably implement OpenAI API in this code in the future....
