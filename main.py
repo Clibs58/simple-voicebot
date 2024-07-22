@@ -111,7 +111,7 @@ class ExitProgram(Exception):
     pass
 
 if __name__ == "__main__":
-    sayStuff("NeoBot activating")
+    sayStuff("Voice bot activating")
     try:
         while True:
             
@@ -133,10 +133,10 @@ if __name__ == "__main__":
                 print(f"Could not request results from Google Speech Recognition service; {e}")
                 break
 
-            if user_input == "new bot":
+            if user_input == "voice bot":
                 try:
-                    print("NeoBot Started...")
-                    sayStuff("Neo Bot started...")
+                    print("VoiceBot Started...")
+                    sayStuff("Voice Bot started...")
                     
                     while True:
                         with sr.Microphone() as source:
@@ -196,7 +196,7 @@ if __name__ == "__main__":
                             
                             elif "news" in command:
                                 print("Here are some ' Top Headlines ' of this day...")
-                                sayStuff("Here are some tpop headlines of the day")
+                                sayStuff("Here are some top headlines of the day")
                                 news(command)
                             
                 except ExitProgram:
