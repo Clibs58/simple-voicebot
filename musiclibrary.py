@@ -1,7 +1,10 @@
 music={
     "rex":"https://www.youtube.com/watch?v=SBfoWTB-T_U",
     "heat":"https://www.youtube.com/watch?v=mRD0-GxqHVo",
-    "seasons":"https://www.youtube.com/watch?v=9tIBfNZK0Q8"
+    "seasons":"https://www.youtube.com/watch?v=9tIBfNZK0Q8",
+    "arcade":"https://www.youtube.com/watch?v=51u5fnyrGj4",
+    "numb":"https://www.youtube.com/watch?v=9mVXPLlnSu4",
+    
 }
 
 musicS={
